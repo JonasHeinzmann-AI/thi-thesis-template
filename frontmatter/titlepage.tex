@@ -1,0 +1,59 @@
+%==============================================================================
+%  Title page -- reproduces "Template for the cover page of the final thesis
+%  (Stand 12/2024)" exactly: logo top right, centred institution block,
+%  left-aligned metadata block, sans-serif throughout.
+%==============================================================================
+\begin{titlepage}
+\sffamily
+
+\begin{flushright}
+    % The logo is NOT shipped with this template: it is the university's mark and
+    % redistributing it is not ours to decide. Download it from the THI corporate
+    % design pages and drop it in as figures/thi-logo.jpg. Without the file the
+    % title page simply leaves the space blank, so the template builds either way.
+    \IfFileExists{figures/thi-logo.jpg}{%
+      \includegraphics[width=45mm]{figures/thi-logo.jpg}%
+    }{\rule{0pt}{18mm}}
+\end{flushright}
+
+\vspace{25mm}
+
+\begin{center}
+    \textbf{\large Technische Hochschule Ingolstadt}\\[8mm]
+    \textbf{\large \thesisFaculty}\\[8mm]
+    \textbf{\large \thesisCourse}
+
+    \vspace{16mm}
+
+    \textbf{\large \thesisType}
+
+    \vspace{12mm}
+
+    {\large \thesisTitle}
+\end{center}
+
+\vspace{25mm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+    First name and surname: & \thesisAuthor
+\end{tabular}
+
+\vspace{15mm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+    issued on:    & \thesisIssueDate      \\
+    submitted on: & \thesisSubmissionDate
+\end{tabular}
+
+\vspace{15mm}
+
+\noindent
+\begin{tabular}{@{}ll@{}}
+    First examiner:  & \thesisFirstExaminer  \\
+    Second examiner: & \thesisSecondExaminer
+\end{tabular}
+
+\vfill
+\end{titlepage}

@@ -1,0 +1,36 @@
+\cleardoublepage
+\chapter*{List of Symbols}
+\addcontentsline{toc}{chapter}{List of Symbols}
+
+% A physics-heavy thesis benefits from a symbol list distinct from the acronyms.
+% Kept as a plain table: robust and independent of the glossaries machinery.
+% Fill in / prune as the notation settles; every symbol used in the text belongs here.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}l l l@{}}
+\toprule
+Symbol & Meaning & Unit \\
+\midrule
+$T_2$            & transverse (spin--spin) relaxation time            & ms \\
+$R_2 = 1/T_2$    & transverse relaxation rate                          & ms$^{-1}$ \\
+$T_1$            & longitudinal relaxation time (assumed, per tissue)  & ms \\
+$x$              & a scalar quantity                                    & 1    \\
+$\hat{T}_2$      & estimated $T_2$ from the differentiable layer        & ms \\
+$A$              & decay interval $2(\mathrm{TR}-\mathrm{TE}_1)=\mathrm{TE}_2-\mathrm{TE}_1$ & ms \\
+$k$              & flip-angle / $T_1$ / diffusion constant of the model & 1 \\
+$c_1$            & spoiler diffusion correction term                    & 1 \\
+$\alpha$         & RF flip angle                                        & deg \\
+$D$              & assumed tissue diffusivity                           & mm$^2$/s \\
+$\mathrm{TR}$    & repetition time                                      & ms \\
+$\mathrm{TE}_1,\, \mathrm{TE}_2$ & echo times                          & ms \\
+$\mathcal{A}=M\mathcal{F}C$ & forward operator (mask, Fourier, coils)   & 1 \\
+$M$              & undersampling mask                                   & 1 \\
+$C$              & coil sensitivity maps                                & 1 \\
+$R$              & acceleration factor                                  & 1 \\
+$\lambda$        & loss weighting coefficient                           & 1 \\
+$\rho$           & Pearson correlation coefficient                      & 1 \\
+$\varepsilon$    & stabilisation constant, added in magnitude and quotient & a.u. \\
+\bottomrule
+\end{tabular}
+\end{center}

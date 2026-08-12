@@ -1,0 +1,79 @@
+%------------------------------------------------------------------------------
+%  Packages. Conservative, modern, Overleaf-safe.
+%------------------------------------------------------------------------------
+\PassOptionsToPackage{hyphens}{url}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}          % serif body text
+\usepackage{helvet}           % Helvetica clone -> \sffamily (title page)
+\usepackage{microtype}
+\usepackage{csquotes}         % required by biblatex
+
+% Zotero titles routinely contain raw Unicode subscripts/superscripts (e.g. a
+% literal "T₂"). Better BibTeX passes them through verbatim, and pdfLaTeX errors
+% on them. Map the ranges to text sub/superscripts so the bibliography compiles
+% whatever the library contains -- references.bib must not be hand-edited.
+\usepackage{newunicodechar}
+\newunicodechar{₀}{\textsubscript{0}}
+\newunicodechar{₁}{\textsubscript{1}}
+\newunicodechar{₂}{\textsubscript{2}}
+\newunicodechar{₃}{\textsubscript{3}}
+\newunicodechar{₄}{\textsubscript{4}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{−}{\ensuremath{-}}
+
+% --- maths ---------------------------------------------------------------
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{bm}
+\usepackage{siunitx}
+
+% --- floats, tables, figures ---------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{figures/}{figures/logo/}}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage[labelfont=bf]{caption}
+\usepackage{subcaption}       % NOT the obsolete subfigure
+\usepackage{xcolor}
+\usepackage{enumitem}
+
+% --- page layout ---------------------------------------------------------
+\usepackage{scrlayer-scrpage}
+\usepackage{geometry}
+\geometry{a4paper, left=30mm, right=20mm, top=25mm, bottom=25mm}
+
+% --- outline / planning blocks -------------------------------------------
+\usepackage{comment}
+
+% --- acronyms ------------------------------------------------------------
+\usepackage[acronym,nomain,nonumberlist,toc]{glossaries-extra}
+\makeglossaries
+\input{frontmatter/acronyms}
+
+% --- bibliography --------------------------------------------------------
+\usepackage[
+    backend=biber,
+    style=numeric,
+    sorting=nyt,        % alphabetical by author, numbered -- CS convention
+    giveninits=true,
+    maxbibnames=99,
+    doi=true,
+    url=false,
+    isbn=false,
+    eprint=true
+]{biblatex}
+\addbibresource{bibliography/references.bib}
+% Manually curated, web-verified entries kept out of Better BibTeX's reach so a
+% Zotero export cannot overwrite them (see bibliography/extra-verified.bib header).
+\addbibresource{bibliography/extra-verified.bib}
+
+% --- links (load late) ---------------------------------------------------
+\usepackage{hyperref}
+\usepackage{cleveref}         % must come after hyperref

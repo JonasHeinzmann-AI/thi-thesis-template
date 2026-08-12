@@ -1,0 +1,64 @@
+%==============================================================================
+%  Bachelor Thesis -- Technische Hochschule Ingolstadt
+%  Build:  latexmk -pdf main.tex      (needs biber + makeglossaries)
+%  See README.md before first compile.
+%  Template: https://github.com/JonasHeinzmann-AI/thi-thesis-template
+%==============================================================================
+% Margins are set explicitly by `geometry` in preamble/packages.tex
+% (left 30mm / right 20mm, the THI convention). KOMA's DIV/BCOR are therefore
+% deliberately NOT used -- the two mechanisms conflict.
+% `bibliography=totoc` is likewise omitted: biblatex handles the ToC entry via
+% \printbibliography[heading=bibintoc]. Using both duplicates it.
+% Body text is 12pt -- the usual size for a German thesis. If you prefer a
+% tighter page, 11pt is KOMA's own default; heading sizes in preamble/style.tex
+% scale with it automatically and need no adjustment.
+\documentclass[
+    a4paper,
+    12pt,               % -> 11pt for a tighter page
+    oneside,            % -> twoside for double-sided printing
+    parskip=half,
+    listof=totoc,
+    numbers=noenddot,
+    english
+]{scrbook}
+
+\input{metadata}
+\input{preamble/packages}
+\input{preamble/style}
+
+\begin{document}
+
+\frontmatter
+\input{frontmatter/titlepage}
+\input{frontmatter/declaration}
+\input{frontmatter/abstract-en}
+% \input{frontmatter/abstract-de}   % uncomment if your SPO requires a German abstract
+\input{frontmatter/acknowledgements}
+
+\setcounter{tocdepth}{1}   % chapters + sections only in the ToC
+\tableofcontents
+\listoffigures
+\listoftables
+\printacronyms[title={List of Abbreviations}]
+\input{frontmatter/symbols}
+% Fallback if \printacronyms is unavailable:
+% \printglossary[type=\acronymtype,title={List of Abbreviations}]
+
+\mainmatter
+\include{chapters/01-introduction}
+\include{chapters/02-background}
+\include{chapters/03-method}
+\include{chapters/04-results}
+\include{chapters/05-discussion}
+\include{chapters/06-conclusion}
+
+\appendix
+% cleveref must be told that chapters after \appendix are appendices,
+% otherwise \cref{app:...} prints "chapter A" instead of "Appendix A".
+\crefalias{chapter}{appendix}
+\include{appendix/a-derivations}
+
+\backmatter
+\printbibliography[heading=bibintoc,title={References}]
+
+\end{document}

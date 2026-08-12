@@ -1,0 +1,94 @@
+%------------------------------------------------------------------------------
+%  Styling. THI blue sampled directly from the official logo: #015A9C.
+%  (The community GitHub template uses #001C78, which is not the brand colour.)
+%------------------------------------------------------------------------------
+\definecolor{THIblue}{HTML}{015A9C}
+
+% --- heading sizes -------------------------------------------------------
+% KOMA scales headings off the body size. At a 12pt body the default \chapter
+% is \Huge (~25pt), which dwarfs the text. Set the sizes explicitly -- the
+% last size command wins, so these override the KOMA defaults.
+%
+%   at 12pt body:   \large 14.4pt   \Large 17.3pt   \LARGE 20.7pt   \Huge 24.9pt
+%
+\addtokomafont{chapter}{\Large\color{THIblue}}
+\addtokomafont{section}{\large\color{THIblue}}
+\addtokomafont{subsection}{\normalsize\color{THIblue}}
+\addtokomafont{subsubsection}{\normalsize\color{THIblue}}
+\addtokomafont{paragraph}{\normalsize}
+
+% KOMA leaves a very generous gap above chapter titles. Tighten it.
+\RedeclareSectionCommand[beforeskip=-1\baselineskip,afterskip=1.5\baselineskip]{chapter}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    citecolor=THIblue,
+    urlcolor=THIblue,
+    pdfborder={0 0 0},
+    pdftitle={\thesisTitle},
+    pdfauthor={\thesisAuthor}
+}
+
+% --- headers and footers -------------------------------------------------
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[section]{chapter}
+
+% Running header (chapter / section): body pages only. \chapter switches its
+% opening page to the plain style, which has no running header -- the universal
+% book convention, since the chapter title is right there on the page.
+\ihead{\headmark}
+
+% Footer: the page number alone, centred, on EVERY page (the starred form sets
+% both the scrheadings and the plain style used by chapter openings and front
+% matter). Keeping the number in one fixed position everywhere is what
+% KOMA-Script recommends; author name and a running short-title on every page
+% are report-style furniture, not monograph convention, so they are omitted.
+% (\thesisAuthor / \thesisTitleShort remain in metadata.tex for the PDF metadata.)
+\cfoot*{\pagemark}
+
+% Head rule accompanies the running header (body pages only). No foot rule.
+\KOMAoptions{headsepline=0.4pt, footsepline=false}
+\setkomafont{pageheadfoot}{\normalfont\footnotesize\scshape}
+
+% --- typographic hygiene -------------------------------------------------
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+
+\sisetup{per-mode=symbol, range-units=single}
+
+% --- convenience macros used throughout ----------------------------------
+\newcommand{\Ttwo}{T_2}
+\newcommand{\Rtwo}{R_2}
+
+
+% --- planning blocks -----------------------------------------------------
+% Sections carry a visible "Planned content" list while the thesis is still an
+% outline. Flip \showplanfalse to hide every one of them at once, without
+% touching the chapters.
+\definecolor{planColor}{HTML}{4A5568}
+
+\newif\ifshowplan
+\showplantrue           % <-- \showplanfalse hides all planning blocks
+
+\ifshowplan
+  \specialcomment{plan}%
+    {\par\smallskip\begingroup\small\color{planColor}%
+     \noindent\textit{Planned content}\par\vspace{-0.4\baselineskip}}%
+    {\endgroup\smallskip}
+\else
+  \excludecomment{plan}
+\fi
+
+\newcommand{\planitem}[1]{\item #1}
+% \verify was NOT guarded by \ifshowplan, so editorial notes -- including a retraction that
+% carried an unvetted replacement number and the instruction "Re-measure and rewrite before
+% submission" -- typeset into the PDF even with planning blocks switched off. Guarded now, so
+% \showplanfalse genuinely removes every editorial marker in one flip.
+\ifshowplan
+  \newcommand{\verify}[1]{\textbf{To verify:} #1}
+\else
+  \newcommand{\verify}[1]{}
+\fi
