@@ -88,10 +88,10 @@ def main():
     # ------------------------------------------------- declaration of authorship
     # The reason this template exists. Wording follows the THI declaration
     # extended with the AI-usage paragraph. Confirm it with the Pruefungsamt
-    # before submitting: the source slide was marked preliminary, and it omits
-    # the "not presented it elsewhere" clause the older template carries. The three
-    # remaining occurrences of ", and" below are the university's own wording and
-    # are quoted verbatim; the project style rule does not apply to them.
+    # before submitting: the source slide was marked preliminary. It also omits
+    # the "not presented it elsewhere" clause the older template carries.
+    # The serial commas in the quoted paragraphs below are the university's own
+    # wording, reproduced verbatim. Do not copy-edit them.
     doc.add_heading("Declaration of Authorship", level=1)
     para(doc, "Declaration in accordance with § 30 Abs. 4 Nr. 7 APO THI", size=10,
          space_after=18)
